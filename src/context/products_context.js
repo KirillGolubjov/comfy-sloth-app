@@ -40,7 +40,7 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
       const response = await axios.get(url);
-      const products = await response.data;
+      const products = response.data;
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });
@@ -49,13 +49,13 @@ export const ProductsProvider = ({ children }) => {
   };
 
   const fetchSingleProduct = async (url) => {
-    dispatch({ GET_SINGLE_PRODUCT_BEGIN });
+    dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
     try {
       const response = await axios.get(url);
-      const singleProduct = await response.data;
+      const singleProduct = response.data;
       dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct });
     } catch (error) {
-      dispatch({ GET_SINGLE_PRODUCT_ERROR });
+      dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
     }
   };
 
